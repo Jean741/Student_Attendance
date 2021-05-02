@@ -7,13 +7,12 @@ import javax.persistence.*;
 import java.time.LocalDate;
 
 @Entity
-@Getter
-@Setter
+@Data
 @NoArgsConstructor
 @AllArgsConstructor
-@ToString
 public class AttendanceRecord {
     @Id
+    @NonNull
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @ManyToOne
@@ -21,5 +20,6 @@ public class AttendanceRecord {
     private LocalDate date;
     private String reason;
     @Enumerated(EnumType.STRING)
+    @NonNull
     private Status status;
 }

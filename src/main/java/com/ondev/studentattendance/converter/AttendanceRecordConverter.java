@@ -14,7 +14,13 @@ public final class AttendanceRecordConverter {
     }
 
     public static AttendanceRecordDto modelToDto(AttendanceRecord attendanceRecord){
-        return new AttendanceRecordDto(attendanceRecord.getId(),attendanceRecord.getStudent().getName(),attendanceRecord.getDate(),attendanceRecord.getReason(),attendanceRecord.getStatus());
+        return  AttendanceRecordDto.builder()
+                .id(attendanceRecord.getId())
+                .studentName(attendanceRecord.getStudent().getName())
+                .date(attendanceRecord.getDate())
+                .reason(attendanceRecord.getReason())
+                .status(attendanceRecord.getStatus())
+                .build();
     }
 
     public static List<AttendanceRecordDto> modelsToDtos(Collection<AttendanceRecord> attendanceRecords){

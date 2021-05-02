@@ -9,7 +9,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/students")
-public class StudentRestController {
+public class StudentRestController implements StudentServiceClient {
     private IStudentService studentService;
 
     @Autowired
@@ -17,27 +17,25 @@ public class StudentRestController {
         this.studentService = studentService;
     }
 
-    @PostMapping()
     public Student saveStudent(@RequestBody Student student){
+
         return studentService.saveStudent(student);
     }
 
-    @GetMapping("/{id}")
     public Student getStudentById(@PathVariable Long id){
+
         return studentService.getStudentById(id);
     }
 
-    @GetMapping()
+
     public List<Student> getAllStudents(){
         return studentService.getAllStudents();
     }
 
-    @PutMapping("/{id}")
     public Student updateStudent(@RequestBody Student student ,@PathVariable Long id){
         return studentService.updateStudent(student,id);
     }
 
-    @DeleteMapping("/{id}")
     public void deleteStudentById(@PathVariable Long id){
         studentService.deleteStudentById(id);
     }
