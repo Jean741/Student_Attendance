@@ -7,17 +7,17 @@ import java.util.List;
 
 public interface StudentServiceClient {
     @PostMapping()
-    public Student saveStudent(@RequestBody Student student);
+    Student saveStudent(@RequestBody Student student);
 
     @GetMapping("/{id}")
-    public Student getStudentById(@PathVariable Long id);
+    Student getStudentById(@PathVariable Long id);
 
     @PutMapping("/{id}")
-    public Student updateStudent(@RequestBody Student student ,@PathVariable Long id);
+    Student updateStudent(@RequestBody Student student ,@PathVariable Long id);
 
     @DeleteMapping("/{id}")
-    public void deleteStudentById(@PathVariable Long id);
+    void deleteStudentById(@PathVariable Long id);
 
     @GetMapping()
-    public List<Student> getAllStudents();
+    List<Student> getAllStudents();
 }
