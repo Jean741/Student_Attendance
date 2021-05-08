@@ -1,0 +1,24 @@
+[
+    {
+        "id": 1,
+        "student": {
+            "id": 1,
+            "name": "Jean Claude",
+            "email": "jean@gmail.com"
+        },
+        "date": "2021-05-01",
+        "reason": "Maladie",
+        "status": "ABSENT"
+    },
+    {
+        "id": 2,
+        "student": {
+            "id": 2,
+            "name": "Mohamed Diaby",
+            "email": "mdiaby@gmail.com"
+        },
+        "date": "2021-05-01",
+        "reason": "Neant",
+        "status": "PRESENT"
+    }
+]

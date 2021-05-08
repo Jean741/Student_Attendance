@@ -1,4 +1,4 @@
-package com.ondev.studentattendance.converter;
+ package com.ondev.studentattendance.converter;
 
 import com.ondev.studentattendance.dto.AttendanceRecordDto;
 import com.ondev.studentattendance.entities.AttendanceRecord;
@@ -17,7 +17,7 @@ public final class AttendanceRecordConverter {
         return  AttendanceRecordDto.builder()
                 .id(attendanceRecord.getId())
                 .studentName(attendanceRecord.getStudent().getName())
-                .date(attendanceRecord.getDate())
+  //              .date(attendanceRecord.getDate())
                 .reason(attendanceRecord.getReason())
                 .status(attendanceRecord.getStatus())
                 .build();
