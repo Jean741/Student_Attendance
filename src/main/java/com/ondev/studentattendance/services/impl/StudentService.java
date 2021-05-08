@@ -11,6 +11,11 @@ import java.util.List;
 @Service
 public class StudentService implements IStudentService {
 
+    @Override
+    public List<Student> saveStudent(List<Student> students) {
+        return null;
+    }
+
     private StudentRepository studentRepository;
 
     @Autowired

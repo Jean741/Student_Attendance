@@ -2,6 +2,7 @@ package com.ondev.studentattendance.controller;
 
 import com.ondev.studentattendance.entities.Student;
 import com.ondev.studentattendance.services.IStudentService;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -18,12 +19,10 @@ public class StudentRestController implements StudentServiceClient {
     }
 
     public Student saveStudent(@RequestBody Student student){
-
         return studentService.saveStudent(student);
     }
 
     public Student getStudentById(@PathVariable Long id){
-
         return studentService.getStudentById(id);
     }
 
