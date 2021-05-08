@@ -1,8 +1,8 @@
 package com.ondev.studentattendance.services;
 
-import com.ondev.studentattendance.entities.Student;
-
 import java.util.List;
+
+import com.ondev.studentattendance.entities.Student;
 
 public interface IStudentService {
     Student saveStudent(Student student);
