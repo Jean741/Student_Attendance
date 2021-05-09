@@ -2,9 +2,11 @@ package com.ondev.studentattendance.controller;
 
 import com.ondev.studentattendance.entities.Student;
 import com.ondev.studentattendance.services.IStudentService;
-
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
@@ -18,24 +20,24 @@ public class StudentRestController implements StudentServiceClient {
         this.studentService = studentService;
     }
 
-    public Student saveStudent(@RequestBody Student student){
+    public Student saveStudent(@RequestBody Student student) {
         return studentService.saveStudent(student);
     }
 
-    public Student getStudentById(@PathVariable Long id){
+    public Student getStudentById(@PathVariable Long id) {
         return studentService.getStudentById(id);
     }
 
 
-    public List<Student> getAllStudents(){
+    public List<Student> getAllStudents() {
         return studentService.getAllStudents();
     }
 
-    public Student updateStudent(@RequestBody Student student ,@PathVariable Long id){
-        return studentService.updateStudent(student,id);
+    public Student updateStudent(@RequestBody Student student, @PathVariable Long id) {
+        return studentService.updateStudent(student, id);
     }
 
-    public void deleteStudentById(@PathVariable Long id){
+    public void deleteStudentById(@PathVariable Long id) {
         studentService.deleteStudentById(id);
     }
 }

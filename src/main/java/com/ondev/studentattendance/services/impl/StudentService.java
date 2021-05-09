@@ -2,19 +2,17 @@ package com.ondev.studentattendance.services.impl;
 
 import com.ondev.studentattendance.dao.StudentRepository;
 import com.ondev.studentattendance.entities.Student;
+import com.ondev.studentattendance.exception.ApiErrors;
+import com.ondev.studentattendance.exception.HttpCustomException;
 import com.ondev.studentattendance.services.IStudentService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
 public class StudentService implements IStudentService {
-
-    @Override
-    public List<Student> saveStudent(List<Student> students) {
-        return null;
-    }
 
     private StudentRepository studentRepository;
 
@@ -24,13 +22,18 @@ public class StudentService implements IStudentService {
     }
 
     @Override
+    public List<Student> saveStudent(List<Student> students) {
+        return null;
+    }
+
+    @Override
     public Student saveStudent(Student student) {
         return studentRepository.saveAndFlush(student);
     }
 
     @Override
     public Student getStudentById(Long id) {
-        return studentRepository.findById(id).orElseThrow(()->new RuntimeException("Student with id : "+id+" do not exist."));
+        return studentRepository.findById(id).orElseThrow(() -> new HttpCustomException(HttpStatus.NOT_FOUND.value(), String.format(ApiErrors.OBJECT_NOT_FOUND_MESSAGE, "Student", id)));
     }
 
     @Override

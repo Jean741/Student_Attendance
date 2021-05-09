@@ -28,23 +28,21 @@ import static org.mockito.ArgumentMatchers.any;
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 class StudentRestControllerTest {
 
-    @Autowired
-    private MockMvc mockMvc;
-
-    @MockBean
-    private StudentService studentService;
-
-    private  String URI = "/api/students";
-
     private static Student student1;
     private static Student student2;
-    static void loadData(){
-         student1  = new Student(1L,"Jean","jean@gmail.com");
-         student2  = new Student(2L,"Mohamed","mohamed@gmail.com");
+    @Autowired
+    private MockMvc mockMvc;
+    @MockBean
+    private StudentService studentService;
+    private String URI = "/api/students";
+
+    static void loadData() {
+        student1 = new Student(1L, "Jean", "jean@gmail.com");
+        student2 = new Student(2L, "Mohamed", "mohamed@gmail.com");
     }
 
     @BeforeAll
-    static void setUp(){
+    static void setUp() {
         loadData();
     }
 
@@ -58,23 +56,23 @@ class StudentRestControllerTest {
                 .andReturn();
         MockHttpServletResponse mockHttpServletResponse = mvcResult.getResponse();
         String jsonOutput = mockHttpServletResponse.getContentAsString();
-        Assertions.assertEquals(jsonInput,jsonOutput);
-        Mockito.verify(studentService,Mockito.times(1)).saveStudent(student1);
+        Assertions.assertEquals(jsonInput, jsonOutput);
+        Mockito.verify(studentService, Mockito.times(1)).saveStudent(student1);
 
     }
 
     @Order(2)
     @Test
     @DisplayName("Get student by id")
-    void testGetStudentById() throws Exception{
+    void testGetStudentById() throws Exception {
 
         String jsonInput = this.convertToJsonString(student1);
         Mockito.when(studentService.getStudentById(1L)).thenReturn(student1);
-        MvcResult mvcResult = this.mockMvc.perform(MockMvcRequestBuilders.get(URI+"/1").accept(MediaType.APPLICATION_JSON)).andReturn();
+        MvcResult mvcResult = this.mockMvc.perform(MockMvcRequestBuilders.get(URI + "/1").accept(MediaType.APPLICATION_JSON)).andReturn();
         MockHttpServletResponse mockHttpServletResponse = mvcResult.getResponse();
         String jsonOutput = mockHttpServletResponse.getContentAsString();
-        Assertions.assertEquals(jsonInput,jsonOutput);
-        Assertions.assertEquals(HttpStatus.OK.value(),mockHttpServletResponse.getStatus());
+        Assertions.assertEquals(jsonInput, jsonOutput);
+        Assertions.assertEquals(HttpStatus.OK.value(), mockHttpServletResponse.getStatus());
 
     }
 
@@ -82,29 +80,29 @@ class StudentRestControllerTest {
     @Test
     @DisplayName("Get All students")
     void testGetAllStudents() throws Exception {
-        List<Student> students = Arrays.asList(student1,student2);
+        List<Student> students = Arrays.asList(student1, student2);
         String jsonInput = this.convertToJsonString(students);
         Mockito.when(studentService.getAllStudents()).thenReturn(students);
         MvcResult mvcResult = this.mockMvc.perform(MockMvcRequestBuilders.get(URI).accept(MediaType.APPLICATION_JSON)).andReturn();
         MockHttpServletResponse mockHttpServletResponse = mvcResult.getResponse();
         String jsonOutput = mockHttpServletResponse.getContentAsString();
-        Assertions.assertEquals(jsonInput,jsonOutput);
+        Assertions.assertEquals(jsonInput, jsonOutput);
     }
 
 
     @Order(4)
     @Test
     @DisplayName("Update student")
-    void testUpdateStudent() throws Exception{
-        Mockito.when(studentService.updateStudent(student1,1L)).thenReturn(student1);
+    void testUpdateStudent() throws Exception {
+        Mockito.when(studentService.updateStudent(student1, 1L)).thenReturn(student1);
         student1.setName("Claude");
         student1.setEmail("claude@gmail.com");
         String jsonInput = this.convertToJsonString(student1);
-        MvcResult mvcResult = this.mockMvc.perform(MockMvcRequestBuilders.put(URI+"/1").accept(MediaType.APPLICATION_JSON).content(jsonInput).contentType(MediaType.APPLICATION_JSON))
+        MvcResult mvcResult = this.mockMvc.perform(MockMvcRequestBuilders.put(URI + "/1").accept(MediaType.APPLICATION_JSON).content(jsonInput).contentType(MediaType.APPLICATION_JSON))
                 .andReturn();
         MockHttpServletResponse mockHttpServletResponse = mvcResult.getResponse();
         String jsonOutput = mockHttpServletResponse.getContentAsString();
-        Assertions.assertEquals(jsonInput,jsonOutput);
+        Assertions.assertEquals(jsonInput, jsonOutput);
     }
 
 
@@ -113,13 +111,14 @@ class StudentRestControllerTest {
     @DisplayName("Delete student")
     void testDeleteStudentById() throws Exception {
         Mockito.doNothing().when(studentService).deleteStudentById(1L);
-        MvcResult mvcResult = this.mockMvc.perform(MockMvcRequestBuilders.delete(URI+"/1").accept(MediaType.APPLICATION_JSON)).andReturn();
+        MvcResult mvcResult = this.mockMvc.perform(MockMvcRequestBuilders.delete(URI + "/1").accept(MediaType.APPLICATION_JSON)).andReturn();
         MockHttpServletResponse mockHttpServletResponse = mvcResult.getResponse();
-        Assertions.assertEquals(HttpStatus.OK.value(),mockHttpServletResponse.getStatus());
+        Assertions.assertEquals(HttpStatus.OK.value(), mockHttpServletResponse.getStatus());
     }
 
     /**
      * Convert Object into Json String by using Jackson ObjectMapper
+     *
      * @param student
      * @return
      * @throws JsonProcessingException
