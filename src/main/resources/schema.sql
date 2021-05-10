@@ -1,3 +1,4 @@
+
 create table if not exists `student`
 (
     `id`    bigint(20) not null auto_increment,

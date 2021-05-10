@@ -1,5 +1,5 @@
 package com.ondev.studentattendance.enumeration;
 
 public enum Status {
-    PRESENT , ABSENT
+    PRESENT, ABSENT
 }

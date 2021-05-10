@@ -13,7 +13,7 @@ public interface StudentServiceClient {
     Student getStudentById(@PathVariable Long id);
 
     @PutMapping("/{id}")
-    Student updateStudent(@RequestBody Student student ,@PathVariable Long id);
+    Student updateStudent(@RequestBody Student student, @PathVariable Long id);
 
     @DeleteMapping("/{id}")
     void deleteStudentById(@PathVariable Long id);
